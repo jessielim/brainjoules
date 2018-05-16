@@ -1,0 +1,26 @@
+<h2>Create New Teacher</h2>
+
+  <%= form_for @user, url: "/teachers_index", html: {method: "post"} do |form| %>
+
+    <%= render partial: '/users/form', object: form %>
+
+    <%= fields_for @user.teachers.new do |x| %>
+    <%# form.fields_for @user.teachers.new do |x|%>
+
+    <div class="text-field">
+    <%= x.label :name %>
+    <%= x.text_field :name%>
+    </div>
+
+    <div class="text-field">
+    <%= x.label :phone_number %>
+    <%= x.text_field :phone_number%>
+    </div>
+
+
+     <% end %>
+    <div class="submit-field">
+      <%= form.submit "Add!" %>
+    </div>
+  <% end %>
+</div>

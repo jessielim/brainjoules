@@ -1,0 +1,37 @@
+<h3>Name of Student or Teacher </h3>
+
+
+    <%= form_tag '/search', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', student: "student" %>
+     <datalist id="student"> 
+    </datalist>
+      <%= submit_tag "Search",:id => 'searchBtn',:class => 'btn btn-outline-primary my-2 my-sm-0'%>
+      <% end %>
+
+<h1>Students</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Parent's Email</th>
+      <th>Parent's Contact</th>
+      <th>Score</th>
+      <th>Token</th>
+      
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+        <tr>
+            
+      
+
+           <td><%= link_to 'Edit', "#"%></td>
+           
+         
+  </tbody>
+</table>
