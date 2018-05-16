@@ -1,15 +1,6 @@
 <h1> Welcome to BrainJoules</h1>
 
- <%if current_user.student?%>
-
- 
-
-
- <%elsif current_user.teacher?%>
-
-
-
- <%else%>
+<% if signed_in? %>
  	<div class = "search">
 	<!-- <img src= "search.jpeg"> -->
 	<%=link_to 'Search', "/search"%>
@@ -23,15 +14,16 @@
 
  	<div class = "add_student">
  	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
- 	<%=link_to 'Add_student', "#"%>
+ 	<%=link_to 'Add_student', "/add_student"%>
  	</div>
 
  	<div class = "Report">
  	<!-- <img src="report.jpeg" alt="Report" height="42" width="42"> -->
  	<%=link_to 'Report', "#"%>
  	</div>
+ 	<%end%>
 
- <%end%>
+ 
 
 
 

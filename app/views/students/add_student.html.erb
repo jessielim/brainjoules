@@ -1,0 +1,36 @@
+<h2>Create New Student</h2>
+
+  <%= form_for(@user, url: "/students_index", html: {method: "post"}) do |form| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <%end%>
+      </ul>
+    </div>
+
+    <%= render partial: '/users/form', object: form %>
+
+    <%= fields_for(@user.students.new) do |x| %>
+
+    <div class="text-field">
+    <%= x.label :name %>
+    <%= x.text_field :name%>
+    </div>
+
+     <div class="text-field">
+    <%= x.label :parents_contact %>
+    <%= x.text_field :parents_contact%>
+    </div>
+
+     <% end %>
+    <div class="action">
+      <%= form.submit "Add!" %>
+    </div>
+  <% end %>
+</div>
