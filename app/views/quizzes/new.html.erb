@@ -1,0 +1,34 @@
+
+<h1>Create new Quiz</h1>
+<%= "Teacher ID: "%><%= @teacher.id %>
+
+
+<form action="/quiz-creation" method="post">
+
+<p>Title</p><input type="text" name="title">
+<p>Code</p><input type="text" name="code">
+<%= hidden_field_tag  :teacher_id, @teacher.id %>
+<!-- <img src="https://via.placeholder.com/50x50"> -->
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+<input type="submit" name="Submit">
+
+</form>
+
+<!-- <button id="filldetails" onclick="addFields()">Add Answer</button>
+
+
+<script type="text/javascript">
+     function addFields(){
+             var input = document.createElement("input");
+
+             var container = document.getElementById("container");
+             console.log(container);
+             container.appendChild(input);
+             count = container.childElementCount;
+             document.createElement
+              input.type = "text";
+             input.name = "answer" + count + "[description]";
+             input.placeholder = "answer" + count;
+             input.value = "";
+             console.log(input)
+        }

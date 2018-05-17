@@ -1,20 +1,23 @@
-<h3>Name of Teacher </h3>
+<h3>Name of Student </h3>
 
 
-    <%= form_tag '/search_teacher', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
-     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "teacher" %>
-     <datalist id="teacher"> 
+    <%= form_tag '/search_student', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "student" %>
+     <datalist id="student"> 
     </datalist>
       <%= submit_tag "Search",:id => 'searchBtn',:class => 'btn btn-outline-primary my-2 my-sm-0'%>
       <% end %>
 
-<h1>Teachers</h1>
+<h1>Students</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Phone Number</th>
+      <th>Parent's Email</th>
+      <th>Parent's Contact</th>
+      <th>Score</th>
+      <th>Token</th>
       
       
       <th colspan="3"></th>
@@ -24,17 +27,18 @@
   <tbody>
     <tr>
 
-        <% @teacher.order('id asc').each do |x| %>
-        <tr id = "teacher_<%=x.id%>">
+        <% @student.order('id asc').each do |x| %>
+        <tr id = "student_<%=x.id%>">
             <td><%= x.name %></td>
-            <td><%= x.phone_number %></td>
-          <%if current_user.admin?%>
+            <td><%= x.parents_email %></td>
+            <td><%= x.parents_contact %></td>
+            <td><%= x.score %></td>
+            <td><%= x.token %></td> 
+            <%if current_user.admin?%>
               <td><%= link_to 'Edit'%></td>
               <td><%= link_to 'Destroy' %></td>
            <%end%>
         <%end%>
-
-        <%= link_to 'Destroy', listing, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
 
 
         </tr>
@@ -49,9 +53,7 @@
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 
-
 $('#query').on("keyup", function(){
-  console.log("key up here")
     autocomplete()
   });
 
@@ -61,7 +63,7 @@ $('#query').on("keyup", function(){
     console.log(query);
 
     $.ajax({
-      url:'/search_teacher',
+      url:'/search_student',
       type:'POST',
       data: $("#form").serialize(),
       dataType:'json',
@@ -79,13 +81,13 @@ $('#query').on("keyup", function(){
         }
         console.log(data);
         console.log(data.unique());
-        $("#teacher").html("");
+        $("#student").html("");
         data.unique().forEach(function(element){
           var option = document.createElement("option");
           option.value = element;
           // console.log(option);
         
-          var list = $("#teacher");
+          var list = $("#student");
           list.append(option);
          $('#optionVal').val(option);
           console.log(list);

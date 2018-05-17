@@ -36,18 +36,11 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %>
               </a>
 
-              <%if current_user.teacher?%>
+              
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Find a Student</a>
-                 <a class="dropdown-item" href="#">Create a Quiz</a>
-                <div class="dropdown-divider"></div>
                 <%= link_to "Log Out", sign_out_path, method: :delete, class: "dropdown-item" %>
               </div>
-              <%else%>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to "Log Out", sign_out_path, method: :delete, class: "dropdown-item" %>
-              </div
-              <%end%>
+              
 
                 
             </li>
