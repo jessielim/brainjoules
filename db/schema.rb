@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516035758) do
+ActiveRecord::Schema.define(version: 20180516162420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,14 +62,13 @@ ActiveRecord::Schema.define(version: 20180516035758) do
 
   create_table "students", force: :cascade do |t|
     t.string "name", null: false
-    t.string "parents_email"
-    t.integer "parents_contact"
     t.integer "score", default: 0
     t.integer "token", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "teacher_id"
+    t.string "parents_contact"
     t.index ["name"], name: "index_students_on_name"
     t.index ["teacher_id"], name: "index_students_on_teacher_id"
     t.index ["user_id"], name: "index_students_on_user_id"
@@ -77,10 +76,10 @@ ActiveRecord::Schema.define(version: 20180516035758) do
 
   create_table "teachers", force: :cascade do |t|
     t.string "name"
-    t.integer "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "phone_number"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
@@ -91,9 +90,18 @@ ActiveRecord::Schema.define(version: 20180516035758) do
     t.string "encrypted_password", limit: 128, null: false
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
-    t.integer "role", default: 0
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "pets", "students"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_results", "quizzes"
+  add_foreign_key "quiz_results", "students"
+  add_foreign_key "quizzes", "teachers"
+  add_foreign_key "students", "teachers"
+  add_foreign_key "students", "users"
+  add_foreign_key "teachers", "users"
 end
