@@ -1,0 +1,20 @@
+<h1>Question New Page</h1>
+    
+
+<form action="/question-creation" method="post">
+
+<p>Question</p><input type="text" name="question[description]">
+
+<p>Answer 1: </p><input type="text" name="answer1[description]">
+
+<p>Answer 2: </p><input type="text" name="answer2[description]">
+
+<p>Answer 3: </p><input type="text" name="answer3[description]">
+
+<p>Answer 4: </p><input type="text" name="answer4[description]">
+
+<%= hidden_field_tag :quiz_id, @quiz %>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+<input type="submit" name="Submit">
+
+</form>

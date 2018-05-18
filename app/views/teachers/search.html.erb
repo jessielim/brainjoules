@@ -1,7 +1,7 @@
-<h3>Name of Student </h3>
+<h3>Name of Teacher </h3>
 
 
-    <%= form_tag '/search_student', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+    <%= form_tag '/search_teacher', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
      <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', student: "student" %>
      <datalist id="student"> 
     </datalist>
@@ -14,10 +14,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Parent's Email</th>
-      <th>Parent's Contact</th>
-      <th>Score</th>
-      <th>Token</th>
+      <th>Phone Number</th>
       
       
       <th colspan="3"></th>
@@ -26,19 +23,17 @@
 
   <tbody>
     <tr>
-        <% @student.order('id asc').each do |x| %>
-        <tr id = "student_<%=x.id%>">
-            <td><%= x.name %></td>
-            <td><%= x.parents_email %></td>
-            <td><%= x.parents_contact %></td>
-            <td><%= x.score %></td>
-            <td><%= x.token %></td>
 
+        <% @teacher.order('id asc').each do |x| %>
+        <tr id = "teacher_<%=x.id%>">
+            <td><%= x.name %></td>
+            <td><%= x.phone_number %></td>
           <%if current_user.admin?%>
               <td><%= link_to 'Edit'%></td>
               <td><%= link_to 'Destroy' %></td>
            <%end%>
         <%end%>
+
 
         </tr>
     </tr>

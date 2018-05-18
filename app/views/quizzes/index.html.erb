@@ -1,0 +1,21 @@
+<h1>Quiz Index</h1>
+
+
+<table>
+    <th>Title</th>
+    <th>Code</th>
+    <th>Question</th>
+    <th>Answer</th>
+    <% @quiz.each do |quiz| %> 
+        <% quiz.questions.each do |question| %> 
+            <% question.answers.each do |answer| %> 
+<tr>
+    <td> <%= quiz.title %></td>
+    <td> <%= quiz.code %></td>
+        <td> <%= question.description %></td>
+            <td> <%= answer.description %></td>
+            <% end %>
+        <% end %>
+    <% end %>
+</tr>
+</table>

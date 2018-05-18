@@ -28,6 +28,17 @@
     <%= x.text_field :parents_contact%>
     </div>
 
+     <div class="text-field">
+    <%= x.label :teacher_id  %>
+    <%= x.text_field :teacher_id%>
+    </div>
+
+    <div class="text-field">
+    <%= x.label :parents_email  %>
+    <%= x.email_field :parents_email%>
+    </div>
+
+
      <% end %>
     <div class="action">
       <%= form.submit "Add!" %>

@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+.admin_homepage{
+	display: inline-flex;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#h11{
+	text-align: center;
+	font-size: 500%;
+	font-family: 'Kalam'; 
+
+}
+
+#home_photo{
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+	padding-left: 60px;
+	display: block;
+}
+
+
+
+#text{
+	font-family: 'Merienda';
+	font-size:300%; 
+	text-align: center;
+	padding-top: 50px;
+	font-style: bold;
+}
+
+

@@ -1,9 +1,67 @@
-<h1> Welcome to BrainJoules</h1>
+<p id="h11"> Welcome to BrainJoules</p>
+<link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
+
 
 
 
 
 <% if signed_in? %>
+
+	<%if current_user.admin?%>
+		<div class = "admin_homepage">
+		 	<div class = "find_a_teacher">
+			<a href ="/find_a_teacher"><img src="search.png" class= "icon"><p class = "icon_word">Find A Teacher</p></a>
+
+			</div>
+
+		 	<div class = "find_a_student">
+			<a href ="/find_a_student"><img src="search.png" class= "icon"><p class = "icon_word">Find A Student</p></a>
+			</div>
+
+		 	<div class = "add_teacher">
+		 	<a href ="/add_teacher"><img src="add_teacher.png" class= "icon"><p class = "icon_word">Add A Teacher</p></a>
+		 	</div>
+
+		 	<div class = "add_student">
+		 	<a href ="/add_student"><img src="add_student.png" class= "icon"><p class = "icon_word">Add A Student</p></a>
+		 	</div>
+
+		 	<div class = "Report">
+		 	<a href ="#"><img src="report.jpeg" class= "icon"><p class = "icon_word">Report</p></a>
+		 	</div>
+		 </div>
+
+	 <%elsif current_user.teacher?%>
+	 	<div class = "show_quizzes">
+	 	<!-- <img src="add_teacher.png" alt="Add Teacher" height="42" width="42"> -->
+	 	<%=link_to 'Show Quizzes', "/quiz/main"%>
+	 	</div>
+
+	 	<div class = "create_quiz">
+	 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
+	 	<%=link_to 'Create_quiz', "/quiz-creation"%>
+	 	</div>
+
+	 	<div class = "find_a_student">
+	 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
+	 	<%=link_to 'Find_a_student', "/find_a_student"%>
+	 	</div>
+
+	 <%elsif current_user.student?%>
+	 	<%=link_to 'Join Quiz', "#"%>
+	 	<img src= "search.jpeg">
+	 	<br>
+	 	<%=link_to 'Zoo', "#"%>
+	 <%end%>
+<%else%>
+		<img src="happylearning.jpeg" id= "home_photo">
+	
+
+		<p id="text">MAKE LEARNING FUN</p>
+	
+<%end%>
+
 
  	<div class = "search">
 	<!-- <img src= "search.jpeg"> -->
@@ -27,6 +85,7 @@
  	<!-- <img src="report.jpeg" alt="Report" height="42" width="42"> -->
  	<%=link_to 'Report', "#"%>
  	</div>
+
 
 
  <%end%>
