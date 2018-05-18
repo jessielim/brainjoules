@@ -1,9 +1,3 @@
-
-Clearance.configure do |config|
-  config.routes = false
-
-
-
   Clearance.configure do |config|
   config.allow_sign_up = true
   config.cookie_domain = ".example.com"
@@ -22,3 +16,4 @@ Clearance.configure do |config|
   config.user_model = User
 
 end
+

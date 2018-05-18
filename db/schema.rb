@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517055601) do
+ActiveRecord::Schema.define(version: 20180518030954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,13 +42,13 @@ ActiveRecord::Schema.define(version: 20180517055601) do
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
-  create_table "quiz_results", force: :cascade do |t|
+  create_table "quizresults", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quiz_id"
     t.bigint "student_id"
-    t.index ["quiz_id"], name: "index_quiz_results_on_quiz_id"
-    t.index ["student_id"], name: "index_quiz_results_on_student_id"
+    t.index ["quiz_id"], name: "index_quizresults_on_quiz_id"
+    t.index ["student_id"], name: "index_quizresults_on_student_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20180517055601) do
   add_foreign_key "answers", "questions"
   add_foreign_key "pets", "students"
   add_foreign_key "questions", "quizzes"
-  add_foreign_key "quiz_results", "quizzes"
-  add_foreign_key "quiz_results", "students"
+  add_foreign_key "quizresults", "quizzes"
+  add_foreign_key "quizresults", "students"
   add_foreign_key "quizzes", "teachers"
   add_foreign_key "students", "teachers"
   add_foreign_key "students", "users"
