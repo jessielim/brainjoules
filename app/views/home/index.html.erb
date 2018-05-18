@@ -3,7 +3,11 @@
 <link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
 
 
+
+
+
 <% if signed_in? %>
+
 	<%if current_user.admin?%>
 		<div class = "admin_homepage">
 		 	<div class = "find_a_teacher">
@@ -58,7 +62,34 @@
 	
 <%end%>
 
- 
+
+ 	<div class = "search">
+	<!-- <img src= "search.jpeg"> -->
+	<%=link_to 'Search', "/search"%>
+
+ 	</div>
+
+ 	<div class = "add_teacher">
+ 	<!-- <img src="add_teacher.png" alt="Add Teacher" height="42" width="42"> -->
+ 	<%=link_to 'Add Teacher', "/add_teacher"%>
+ 	</div>
+
+ 	<div class = "add_student">
+ 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
+
+ 	<%=link_to 'Add_student', "/add_student"%>
+
+ 	</div>
+
+ 	<div class = "Report">
+ 	<!-- <img src="report.jpeg" alt="Report" height="42" width="42"> -->
+ 	<%=link_to 'Report', "#"%>
+ 	</div>
+
+
+
+ <%end%>
+
 
 
 

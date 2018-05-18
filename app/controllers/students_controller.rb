@@ -15,6 +15,7 @@ class StudentsController < Clearance::UsersController
 
  end
 
+
  def index
  	if current_user.teacher?
 		@teacher = Teacher.find_by(user_id: current_user.id)

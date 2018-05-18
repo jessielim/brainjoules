@@ -1,4 +1,8 @@
 
+Clearance.configure do |config|
+  config.routes = false
+
+
 
   Clearance.configure do |config|
   config.allow_sign_up = true
@@ -8,6 +12,7 @@
   config.cookie_path = "/"
   config.routes = false
   config.httponly = false
+
   config.mailer_sender = "reply@example.com"
   config.password_strategy = Clearance::PasswordStrategies::BCrypt
   config.redirect_url = "/"

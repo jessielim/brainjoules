@@ -26,6 +26,28 @@ class UsersController < Clearance::UsersController
   	end
  end
 
+ def add_teacher
+ 	@user = User.new
+ 	@user.teachers.new
+
+ end
+
+ def create
+	    @user = User.new
+	   	@teacheruser = @user.teachers.new
+
+	    respond_to do |format|
+	      if @teacheruser.save
+	      	flash[:notice]
+	        format.html { redirect_to root_path, notice: 'Teacher was successfully created.' }
+	        format.json 
+	      else
+	      	flash[:notice]
+	        format.html { redirect_to @teacher, notice: 'There are some errors occurred.' }
+	        format.json 
+	      end
+	    end
+	end
 
 
 
