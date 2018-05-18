@@ -37,7 +37,7 @@ class TeachersController < Clearance::UsersController
 	 end
 
 
-	
+
   
 
 end
