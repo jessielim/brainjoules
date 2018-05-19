@@ -49,6 +49,42 @@ class StudentsController < Clearance::UsersController
 		end
  end
 
+  def destroy
+	   	@student= Student.find(params[:id])
+	   	user = User.all
+	 	  	if current_user.admin?
+	            @student.destroy
+	            respond_to do |format|
+	            format.js 
+	   		    format.html { redirect_to find_a_student_url, notice: 'Teacher was successfully destroyed.' }
+	   		    format.json { head :no_content }
+	 		   	end
+	 		else
+	 		 	flash[:notice]
+	 		    return redirect_to find_a_student_url,notice: 'Sorry. You are not allowed to perform this action'
+	 		end
+  end
+
+  def edit
+  	@student= Student.find(params[:id])
+  	
+  end
+
+  def update
+  	@student= Student.find(params[:id])
+    respond_to do |format|
+      if @student.update(student_params)
+        format.html { redirect_to "/search_student", notice: 'Student was successfully updated.' }
+        format.json 
+      else
+        format.html { redirect_to "/search_student", notice: 'Error.' }
+        format.json 
+      end
+    end
+  end
+
+
+
 
 
 private

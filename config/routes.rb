@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   get "/find_a_teacher" => "teachers#index"
   get "/search_teacher" => "teachers#index"
   post "/search_teacher" => "teachers#search"
-
+  delete "/teacher/:id" => "teachers#destroy"
+  get "/teacher/:id/edit" => "teachers#edit"
+  post "/teacher/:id/edit" => "teachers#update"
 
 ##student part
   get "/add_student" => "students#add_student"
@@ -29,6 +31,9 @@ Rails.application.routes.draw do
   get "/find_a_student" => "students#index"
   get "/search_student" => "students#index"
   post "/search_student" => "students#search"
+  delete "/student/:id" => "students#destroy"
+  get "/student/:id/edit" => "students#edit"
+  post "/student/:id/edit" => "students#update"
 
 
 ##quiz part
@@ -41,3 +46,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 end
+
+
+         
