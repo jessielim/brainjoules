@@ -37,14 +37,29 @@ Rails.application.routes.draw do
 
 
 ##quiz part
-  get "/quiz-main" => "quizzes#index"
-  get "/quiz-creation" => "quizzes#new"
-  post "/quiz-creation" => "quizzes#create"
-  get "/quiz-creation/:quiz_id/question-creation" => "questions#new"
-  post "/question-creation" => "questions#create"
+  # get "/quiz-main" => "quizzes#index"
+  # get "/quiz-creation" => "quizzes#new"
+  # post "/quiz-creation" => "quizzes#create"
+  # get "/quiz-creation/:id/question-creation" => "questions#new"
+  # post "/question-creation" => "questions#create"
   
 
+  resources :quizzes do 
+    resources :questions do 
+      resources :answers do
+      end
+    end    
+  end
+
+
   root to: "home#index"
+
+  # get "/quizzes/main" => "quizzes#index"
+  # get "/quiz/new" => "quizzes#new"
+  # post "/quizzes" => "quizzes#create"
+  # get "/quizzes/questions/new" => "questions#new"
+  # post "/quizzes/questions" => "questions#create"
+  
 end
 
 

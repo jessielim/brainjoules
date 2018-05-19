@@ -35,12 +35,12 @@
 	 <%elsif current_user.teacher?%>
 	 	<div class = "show_quizzes">
 	 	<!-- <img src="add_teacher.png" alt="Add Teacher" height="42" width="42"> -->
-	 	<%=link_to 'Show Quizzes', "/quiz-main"%>
+	 	<%=link_to 'Show Quizzes', "/quizzes"%>
 	 	</div>
 
 	 	<div class = "create_quiz">
 	 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
-	 	<%=link_to 'Create_quiz', "/quiz-creation"%>
+	 	<%=link_to 'Create_quiz', "/quizzes/new"%>
 	 	</div>
 
 	 	<div class = "find_a_student">
