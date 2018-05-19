@@ -4,8 +4,40 @@ class AnswersController < ApplicationController
     end
 
     def new
+    	@answer = Answer.new
+    	@question = Question.find(params[:question_id])
+    	@quiz = Quiz.find(params[:quiz_id])
+    
     end
 
     def create
+    	@quiz = Quiz.find(params[:quiz_id])
+    	@question = Question.find(params[:question_id])
+    	byebug
+
+    	@answer1 = Answer.new(description: params[:answer1][:description], question_id: @question.id)
+		@answer2 = Answer.new(description: params[:answer2][:description], question_id: @question.id)
+		@answer3 = Answer.new(description: params[:answer3][:description], question_id: @question.id)
+		@answer4 = Answer.new(description: params[:answer4][:description], question_id: @question.id)
+byebug
+#(description: params[:description], question_id: @question.id)
+    	respond_to do |format|
+            if @answer1.save && @answer2.save && @answer3.save && @answer4.save
+              
+                  flash[:notice]
+                format.html { redirect_to "/quizzes/#{@quiz.id}/questions/new", notice: 'Answer was successfully created.' }
+                format.json 
+             else
+                  flash[:notice]
+                format.html { redirect_to "/", notice: 'There are some errors occurred.' }
+                format.json
+              end
+          end
     end
+	# private
+	# def answer_params
+	# 	params.require(:answer).permit(:question_id, {answer: [answer: [:description]]})
+	# end
 end
+
+

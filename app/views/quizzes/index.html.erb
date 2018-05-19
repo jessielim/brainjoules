@@ -1,21 +1,64 @@
 <h1>Quiz Index</h1>
 
+<hr>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
-<table>
-    <th>Title</th>
-    <th>Code</th>
-    <th>Question</th>
-    <th>Answer</th>
-    <% @quiz.each do |quiz| %> 
-        <% quiz.questions.each do |question| %> 
-            <% question.answers.each do |answer| %> 
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<table style="width: 100%">
 <tr>
-    <td> <%= quiz.title %></td>
-    <td> <%= quiz.code %></td>
-        <td> <%= question.description %></td>
-            <td> <%= answer.description %></td>
-            <% end %>
-        <% end %>
+    <th>Quiz Title</th>
+    <% @quiz.each do |quiz| %>
+    <td><%= quiz.title %></td>
     <% end %>
 </tr>
+
+<tr>
+    <th rowspan="1">Question</th>
+    <%# @question.each do |question| %>
+    <td><%# question.description %></td>
+    <%# end %>
+</tr>
+
+<tr>
+    <th rowspan="4">Answer</th>
+    <%# @answer.each do |answer| %>
+    <td><%# answer.description %></td>
+<%# end %>
+</tr>
+
 </table>
+<hr>
+
+<hr>
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Quiz Title</th>
+      <th scope="col">Status</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+<% count = 0 %>
+<% @quiz.each do |quiz| %>
+    <tr>
+      <th scope="row"><%= count += 1%></th>
+      <td><%= quiz.title %></td>
+      <%= %>
+      <td><%= link_to "view more", "/quizzes/#{quiz.id}" %></td>
+    </tr>
+
+<% end %>
+  </tbody>
+</table>
+

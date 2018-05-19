@@ -1,0 +1,31 @@
+<h1>Answer New Page</h1>
+
+
+<%= @quiz.title %>
+<hr>
+<%= @question.description %>
+
+
+<%= form_for(@answer, url:  quiz_question_answers_path, html: { multipart: true }) do |form| %>
+<p>Answer 1 <%= form.text_field :description , name: "answer1[description]" %></p>
+<p>Answer 2 <%= form.text_field :description  , name: "answer2[description]" %></p>
+<p>Answer 3 <%= form.text_field :description  , name: "answer3[description]" %></p>
+<p>Answer 4 <%= form.text_field :description , name: "answer4[description]"  %></p>
+
+
+<%= form.submit "Save & Add more questions" %>
+
+<% end %>
+
+<!-- <form action="/quizzes/<%= @quiz.id %>/questions/<%= @question.id %>/answers" method="post">
+
+<p>Answer</p><input type="text" name="answer1[description]">
+<p>Answer</p><input type="text" name="answer2[description]">
+<p>Answer</p><input type="text" name="answer3[description]">
+<p>Answer</p><input type="text" name="answer4[description]">
+<%= hidden_field_tag  :question_id, @question.id %>
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+<input type="submit" name="Submit">
+
+</form>
+     -->
