@@ -1,0 +1,11 @@
+<%= form_for(@teacher, url: "/teacher/#{@teacher.id}/edit", html: {method: "post"}) do |form| %>
+
+<strong>Name</strong>
+<h4 class="content"><%=form.text_field :name, :value => @teacher.name %></h4>
+<br>
+<br>
+<strong>Phone number</strong>
+<h4 class="content"><%=form.text_field :phone_number, :value => @teacher.phone_number %></h4>
+
+<%=form.submit 'Update'%>
+<%end%>

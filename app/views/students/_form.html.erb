@@ -1,0 +1,23 @@
+<%= form_for(@student, url: "/student/#{@student.id}/edit", html: {method: "post"}) do |form| %>
+
+<strong>Name</strong>
+<h4 class="content"><%=form.text_field :name, :value => @student.name %></h4>
+<br>
+<br>
+<strong>Score</strong>
+<h4 class="content"><%=form.text_field :score, :value => @student.score %></h4>
+<br>
+<br>
+<strong>Token</strong>
+<h4 class="content"><%=form.text_field :token, :value => @student.token %></h4>
+<br>
+<br>
+<strong>Parent's Contact</strong>
+<h4 class="content"><%=form.text_field :parents_contact, :value => @student.parents_contact %></h4>
+<br>
+<br>
+<strong>Teacher</strong>
+<h4 class="content"><%=form.text_field :teacher_id, :value => @student.teacher_id %></h4>
+
+<%=form.submit 'Update'%>
+<%end%>

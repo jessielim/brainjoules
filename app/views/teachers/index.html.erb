@@ -14,6 +14,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>ID</th>
       <th>Phone Number</th>
       
       
@@ -27,10 +28,11 @@
         <% @teacher.order('id asc').each do |x| %>
         <tr id = "teacher_<%=x.id%>">
             <td><%= x.name %></td>
+            <td><%= x.id %></td>
             <td><%= x.phone_number %></td>
           <%if current_user.admin?%>
-              <td><%= link_to 'Edit'%></td>
-              <td><%= link_to 'Destroy' %></td>
+              <td><%= link_to 'Edit', "/teacher/#{x.id}/edit"%></td>
+              <td><%= link_to 'Destroy', {action: :destroy, id: x.id}, method: :delete, remote: true, data:{ confirm: 'Are you sure?'} %></td>
            <%end%>
         <%end%>
 
@@ -95,3 +97,6 @@ $('#query').on("keyup", function(){
   }
 
   </script>
+
+
+  

@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'clearance'
 
 gem 'pg_search'
-
+gem 'firebase', '~> 0.2.8'
 
 gem 'byebug'
 

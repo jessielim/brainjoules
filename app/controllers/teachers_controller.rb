@@ -44,18 +44,38 @@ class TeachersController < Clearance::UsersController
 	 def destroy
 	   	@teacher= Teacher.find(params[:id])
 	   	user = User.all
-	 	  	if current_user.id == @listing.user_id || current_user.admin?
-	            @listing.destroy
+	 	  	if current_user.admin?
+	            @teacher.destroy
 	            respond_to do |format|
 	            format.js 
-	   		    format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+	   		    format.html { redirect_to find_a_teacher_url, notice: 'Teacher was successfully destroyed.' }
 	   		    format.json { head :no_content }
 	 		   	end
 	 		else
 	 		 	flash[:notice]
-	 		    return redirect_to listings_url,notice: 'Sorry. You are not allowed to perform this action'
+	 		    return redirect_to find_a_teacher_url,notice: 'Sorry. You are not allowed to perform this action'
 	 		end
 	 end
+
+	 def edit
+  		@teacher= Teacher.find(params[:id])
+  	
+  	 end
+
+  	 def update
+  	 	@teacher= Teacher.find(params[:id])
+  	   respond_to do |format|
+  	     if @teacher.update(teacher_params)
+  	       format.html { redirect_to "/search_teacher", notice: 'Teacher was successfully updated.' }
+  	       format.json 
+  	     else
+  	       format.html { redirect_to "/search_teacher", notice: 'Error.' }
+  	       format.json 
+  	     end
+  	   end
+  	 end
+
+
 
 
  private

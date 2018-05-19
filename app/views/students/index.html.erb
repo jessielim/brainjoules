@@ -35,8 +35,8 @@
             <td><%= x.score %></td>
             <td><%= x.token %></td> 
             <%if current_user.admin?%>
-              <td><%= link_to 'Edit'%></td>
-              <td><%= link_to 'Destroy' %></td>
+              <td><%= link_to 'Edit',"/student/#{x.id}/edit"%></td>
+              <td><%= link_to 'Destroy', {action: :destroy, id: x.id}, method: :delete, remote: true, data:{ confirm: 'Are you sure?'}  %></td>
            <%end%>
         <%end%>
 
