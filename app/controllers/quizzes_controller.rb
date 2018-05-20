@@ -45,6 +45,20 @@ byebug
         @question = Question.where(quiz_id: @quiz)
         @answer = Answer.where(question_id: @question)
     end
+
+    def search
+    if params[:query].present?
+       
+       @quiz = Quiz.search_quiz(params[:query])
+       @quizzes = Quiz.search_by_title(params[:query])
+       respond_to do |format|
+          format.html
+          format.json {render json: @quiz}
+          format.js
+         end
+     end
+
+ end
     # private
 
     #  def quiz_params

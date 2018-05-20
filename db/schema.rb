@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518030954) do
+ActiveRecord::Schema.define(version: 20180519095251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 20180518030954) do
     t.index ["teacher_id"], name: "index_quizzes_on_teacher_id"
   end
 
+  create_table "room_columns", force: :cascade do |t|
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "room_id"
+    t.integer "quiz_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name", null: false
     t.integer "score", default: 0
@@ -92,6 +100,7 @@ ActiveRecord::Schema.define(version: 20180518030954) do
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
     t.integer "role"
+    t.string "room_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

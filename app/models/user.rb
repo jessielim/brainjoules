@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	include Clearance::User
   has_many :teachers
   has_many :students
+  belongs_to :room, optional: true
 
   enum role: [:admin, :teacher, :student]
 
