@@ -1,0 +1,131 @@
+<h1>Code</h1>
+<%= @room.room_id %>
+<br>
+<br>
+Joined Student: <span id="user_count"><%= @user_student.count %></span>
+
+
+<p>Quiz</p>
+
+
+		<%if current_user.teacher?%>
+
+		<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+	     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
+	     <datalist id="quiz"> 
+	    </datalist>
+	    <button id="display_quiz">Display</button>
+	    <%end%>
+	    	
+				<button id="next">Next</button>
+				
+
+		<%end%>
+		<br>
+		<span id="title"></span><br>
+		<span id="q_number"></span>
+		<span id="question"></span><br>
+		<span id="option1"></span><br>
+		<span id="option2"></span><br>
+		<span id="option3"></span><br>
+		<span id="option4"></span>
+		
+		
+		
+
+		
+
+     
+
+	
+
+<script type="text/javascript">
+
+$('#query').on("keyup", function(){
+    autocomplete()
+  });
+
+
+  function autocomplete(){
+    let query = $("#query").serialize();
+    console.log(query);
+
+    $.ajax({
+      url:'/search_quiz',
+      type:'POST',
+      data: $("#form").serialize(),
+      dataType:'json',
+      error: function(request, status, error){
+        console.log(request.responseText);
+                // console.log(request.responseText);
+        console.log("sorry. Something went wrong")
+      },
+      success: function(data){
+
+        Array.prototype.unique = function() {
+          return this.filter(function (value, index, self) { 
+            return self.indexOf(value) === index;
+          });
+        }
+        console.log(data);
+        console.log(data.unique());
+        $("#quiz").html("");
+        data.unique().forEach(function(element){
+          var option = document.createElement("option");
+          option.value = element;
+          // console.log(option);
+        
+          var list = $("#quiz");
+          list.append(option);
+         $('#optionVal').val(option);
+          console.log(list);
+        });
+      }
+    });
+  }
+
+$('#display_quiz').on("click", function(){
+    selecttitle()
+  });
+  function selecttitle(){
+  	$.ajax({
+      url:'/selectquiz',
+      type:'POST',
+      data: { "title": $("#query").val(),
+      			"authenticity_token": "<%= form_authenticity_token %>"
+  			},
+      dataType:'json',
+      error: function(request, status, error){
+        console.log(request.responseText);
+                // console.log(request.responseText);
+        console.log("sorry. Something went wrong")
+      }
+    });
+  }
+
+ 
+ $('#next').on("click", function(){
+ 	console.log("next button clicked")
+    nextquestion()
+  });
+  function nextquestion(){
+  	
+  	$.ajax({
+      url:'/nextquestion',
+      type:'POST',
+      data: { "title": $("#title").html(),
+      			"authenticity_token": "<%= form_authenticity_token %>",q_number: "0"
+  			},
+      dataType:'json',
+      error: function(request, status, error){
+        console.log(request.responseText);
+                // console.log(request.responseText);
+        console.log("sorry. Something went wrong")
+      }
+    });
+  }
+
+  
+
+  
+</script>

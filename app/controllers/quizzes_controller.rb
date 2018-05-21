@@ -39,6 +39,20 @@ class QuizzesController < ApplicationController
         @editquestion = Question.find_by(quiz_id: @editquiz.id)
     end
 
+    def search
+    if params[:query].present?
+       
+       @quiz = Quiz.search_quiz(params[:query])
+       @quizzes = Quiz.search_by_title(params[:query])
+       respond_to do |format|
+          format.html
+          format.json {render json: @quiz}
+          format.js
+         end
+     end
+
+ end
+
 
     def edit
         @teacher = Teacher.find_by(user_id: current_user.id)

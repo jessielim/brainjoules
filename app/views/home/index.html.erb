@@ -39,12 +39,26 @@
 			</div>
 
 
+
 			<div class = "find_a_student">
 			 		<a href ="/find_a_student"><img src="findstudenticon.jpg" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Find a Student</p></a>
 			</div>
 		</div>
+
+	 	<div class = "create_a_room">
+	 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
+	 	<%= form_tag("/rooms", method: "post") do %>
+	 		<input type="submit" value="Create" name="">
+	 	<% end %>
+	 	</div>
+
 	 <%elsif current_user.student?%>
-	 	<%=link_to 'Join Quiz', "#"%>
+	 <%= form_tag("/joinroom", method: "post") do %>
+	   <%= label_tag(:q, "Join room") %>
+	   <%= text_field_tag(:q) %>
+	   <%= submit_tag("Join") %>
+	 <% end %>
+	 	
 	 	
 	 	<br>
 	 	<%=link_to 'Zoo', "#"%>
@@ -59,6 +73,24 @@
 	
 <%end%>
 
+
+<!-- <script type="text/javascript">
+		let button = document.getElementById("create_room")
+		button.onclick = function(e){
+			e.preventDefault();
+			$.ajax({
+				url: "/rooms",
+				type: "POST",
+				dataType: "JSON",
+				data: {"authenticity_token": "<%= form_authenticity_token %>" },
+				success: function(data) {
+					document.write(data.room_id)
+				}
+
+			})
+		}
+	</script>
+ -->
 
 
 

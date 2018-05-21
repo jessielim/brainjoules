@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  mount ActionCable.server, at: '/cable'
+  resources :rooms
+
+
+
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
@@ -25,6 +30,7 @@ Rails.application.routes.draw do
   get "/teacher/:id/edit" => "teachers#edit"
   post "/teacher/:id/edit" => "teachers#update"
 
+
 ##student part
   get "/add_student" => "students#add_student"
   post "/students_index" => "students#student_created"
@@ -34,6 +40,10 @@ Rails.application.routes.draw do
   delete "/student/:id" => "students#destroy"
   get "/student/:id/edit" => "students#edit"
   post "/student/:id/edit" => "students#update"
+  post "/joinroom" => "rooms#join"
+  get "/joinroom" => "rooms#index"
+  post "/selectquiz" => "rooms#select_quiz"
+  post "/nextquestion" => "rooms#next_question"
 
 
 ##quiz part
@@ -50,6 +60,9 @@ Rails.application.routes.draw do
       end
     end    
   end
+
+  post "/search_quiz" => "quizzes#search"
+
   root to: "home#index"
 
   # get "/quizzes/main" => "quizzes#index"
