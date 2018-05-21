@@ -1,42 +1,25 @@
-<h1>Show all question and answers for particular Quiz</h1>
-
-<%= @question.each do |quiz| p quiz end %>
-
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 5px;
-        text-align: left;
-    }
-
-  
-</style>
-<table class="table table-sm table-dark">
-  <thead>
-    <tr>
-      <!-- <th scope="col">#</th> -->
-      <th scope="col">Question</th>
-      <th scope="col">Answer</th>
-    </tr>
-  </thead>
-  <tbody>
-
-  <%# count = 0 %>
-  <% @question.each do |question| %>
-    <tr>
-      <td><%= question.description%></td>
-    </tr>
-  	<% question.answers.each do |answer|%>
-      <td><%= answer.description %></td>
-    	
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
-
+<h3>Show all question and answers for particular Quiz</h3>
 <hr>
+<a href="/"><img src="/backicon.png" style="height: 30px"></a>
 
+
+<% count = 0 %>
+<table class="table table-hover table-dark">
+
+  <% @question.each do |question| %>
+   <th>Question <%= count += 1%></th>
+      <td colspan="2" class="bg-danger"><%= question.description %><%= link_to "Edit", "/quizzes/#{@editquiz.id}/questions/#{@editquestion.id}/edit"%></td>
+      <% question.answers.each do |answer| %>
+    <tr class="table-active">
+    <th>Answer</th>
+      <td><%= answer.description %></td>
+      <% if answer.status == false %>
+      <td><%= "Incorrect "%></td>
+      <% else %>
+      <td><%= "Correct "%></td>
+      <% end %>
+    </tr>
+    
+    <% end %>
+  <% end %>
+</table>

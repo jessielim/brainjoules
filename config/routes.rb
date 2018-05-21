@@ -60,9 +60,8 @@ Rails.application.routes.draw do
       end
     end    
   end
+
   post "/search_quiz" => "quizzes#search"
-
-
 
   root to: "home#index"
 
