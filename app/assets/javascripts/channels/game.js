@@ -24,6 +24,8 @@ App.game = App.cable.subscriptions.create("GameChannel",{
   			option3.innerHTML = data.option4
   			let option4 = document.getElementById("option4")
   			option4.innerHTML = data.option4
+  			let div = document.getElementById("btn-container")
+  			div.innerHTML = '<button id="next">Next</button>'
   		}
   		else if(data.action == "next"){
   			

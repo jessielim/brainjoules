@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
   require 'securerandom'
+  belongs_to :quiz
 	has_many :users, dependent: :nullify
   before_save :make_id
    

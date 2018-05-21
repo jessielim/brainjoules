@@ -18,7 +18,6 @@ class QuizzesController < ApplicationController
         @teacher = Teacher.find_by(user_id: current_user.id)
      
         @quiz =  Quiz.new(title: params[:title],code: params[:code],teacher_id: @teacher.id)
-byebug
         # q =Question.new(description: params[:question][:description])
         # a =Answer.new(description: [params[:answer1][:description],params[:answer2][:description],params[:answer3][:description],params[:answer4][:description]])
         # @questions = @quiz.questions.new
@@ -39,7 +38,7 @@ byebug
     end
 
 
-      def show
+    def show
         @teacher = Teacher.find_by(user_id: current_user.id)
         @quiz = Quiz.where(teacher_id: @teacher.id)
         @question = Question.where(quiz_id: @quiz)
@@ -47,15 +46,17 @@ byebug
     end
 
     def search
-    if params[:query].present?
-       
+       if params[:query].present?
+           
        @quiz = Quiz.search_quiz(params[:query])
        @quizzes = Quiz.search_by_title(params[:query])
+       
        respond_to do |format|
           format.html
           format.json {render json: @quiz}
           format.js
-         end
+       end
+
      end
 
  end

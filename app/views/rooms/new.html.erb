@@ -8,19 +8,22 @@ Joined Student: <span id="user_count"><%= @user_student.count %></span>
 <p>Quiz</p>
 
 
-		<%if current_user.teacher?%>
+		<% if current_user.teacher? %>
 
-		<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
-	     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
-	     <datalist id="quiz"> 
-	    </datalist>
-	    <button id="display_quiz">Display</button>
-	    <%end%>
+			<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+		     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
+		     <datalist id="quiz"> 
+		    </datalist>
+		    <button id="display_quiz">Display</button>
+		    <%end%>
 	    	
-				<button id="next">Next</button>
-				
+				<div id="btn-container"></div>
+			
+			
 
-		<%end%>
+		<% end %>
+			
+			
 		<br>
 		<span id="title"></span><br>
 		<span id="q_number"></span>
@@ -125,7 +128,7 @@ $('#display_quiz').on("click", function(){
     });
   }
 
-  
+
 
   
 </script>

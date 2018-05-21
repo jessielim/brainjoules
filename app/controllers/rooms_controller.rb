@@ -8,14 +8,6 @@ class RoomsController < ApplicationController
 
 	end
 
-	def index
-		@room = current_user.room
-		@users_in_room = @room.users
-		@user_student = @users_in_room.where(role: "student")
-		@quiz = Quiz.all
-		render "new"
-
-	end
 
 	 def join
 	 	@room = current_user.room
@@ -43,8 +35,10 @@ class RoomsController < ApplicationController
   		q1 = Quiz.find_by(title: params[:title])
   		@room = current_user.room
   		current_user.room.quiz_id = q1.id
+  		@users_in_room = @room.users
+		@user_student = @users_in_room.where(role: "student")
   		
-  		
+  		byebug
   		if q1
   			ActionCable.server.broadcast'game_channel',{
   				action: "display",
@@ -58,6 +52,7 @@ class RoomsController < ApplicationController
   				option4: q1.questions[0].answers[3].description
   			}
   		end
+
   	end
 
   	def next_question
@@ -82,4 +77,14 @@ class RoomsController < ApplicationController
   			}
   		end
   	end
+
+	def index
+		@room = current_user.room
+		@users_in_room = @room.users
+		@user_student = @users_in_room.where(role: "student")
+		@quiz = Quiz.all
+
+		render "new"
+
+	end
 end

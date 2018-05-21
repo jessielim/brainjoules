@@ -62,6 +62,10 @@ Rails.application.routes.draw do
   end
   post "/search_quiz" => "quizzes#search"
 
+  ##zoo
+  get "/zoo" => "pets#zoo"
+  get "/petshop" => "pets#index"
+
 
 
   root to: "home#index"
