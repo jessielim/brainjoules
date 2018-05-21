@@ -1,0 +1,30 @@
+<h1>Edit questions</h1>
+<% count = 0 %>
+<% counta = 0 %>
+
+<%= form_for(:question, html: {method: "put"}) do |form| %>
+
+  <% @question.each do |question| %>
+ s
+      <p>Question <%= count += 1%>: <%= question.description %></p>
+
+  <% end %>
+
+
+  <% @question.each do |question| %>
+      
+      <% question.answers.each do |answer| %>
+    Answer <%= counta += 1 %>
+      <%= answer.description %>
+      <% if answer.status == false %>
+     <p><%= "Incorrect "%></p>
+      <% else %>
+      <p><%= "Correct "%></p>
+      <% end %>
+   
+    
+    <% end %>
+  <% end %>
+
+<%= form.submit "Update & Save" %>
+<% end %>

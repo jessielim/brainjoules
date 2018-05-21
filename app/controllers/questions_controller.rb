@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
     def create
       @quiz = Quiz.find(params[:quiz_id])
       @question = Question.new(description: params[:description], quiz_id: @quiz.id)
-   byebug
+
         respond_to do |format|
             if @question.save
                 flash[:notice]
@@ -28,8 +28,18 @@ class QuestionsController < ApplicationController
           end
     end
 
-  
+    def edit
+      @editquiz = Quiz.find(params[:quiz_id])
+      @editquestion = Question.find(params[:id])
+      @teacher = Teacher.find_by(user_id: current_user.id)
+        @quiz = Quiz.where(teacher_id: @teacher.id)
+        @question = Question.where(quiz_id: @quiz)
+        # @answer = Answer.where(question_id: @question)
 
+    end
+    
+    def update
 
+    end
     
 end
