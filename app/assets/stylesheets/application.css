@@ -46,3 +46,67 @@
 }
 
 
+
+/* Homepage */
+.hero-text {
+		font-family: "Kalam";
+		text-align: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 0%);
+		color: #99e6ff;
+		text-shadow: 2px 2px 8px #000000;
+	}
+
+.admin_homepage {
+	display:flex;
+	justify-content: space-around;
+	margin-top: 10%;
+}
+
+.admin_homepage div {
+	text-align: center;
+}
+
+.admin_homepage div img {
+	margin-bottom: 10px;
+}
+
+.admin_homepage div p {
+	background-color: black;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.teacher_homepage {
+	display:flex;
+	justify-content: space-around;
+	margin-top: 10%;
+}
+
+.teacher_homepage div {
+	text-align: center;
+}
+
+.teacher_homepage div img {
+	margin-bottom: 10px;
+}
+
+.teacher_homepage div p {
+	background-color: black;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+p {
+		font-family: "Kalam";
+		font-size: 18px;
+	}
+
+h1 {
+	font-family: "Bungee";
+}
+.nav-item {
+	font-family: 'Kalam';
+}

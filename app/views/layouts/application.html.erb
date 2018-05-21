@@ -7,64 +7,56 @@
   <%= csrf_meta_tag %>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+  <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
   <%= stylesheet_link_tag 'application' %>
 </head>
+
 <body>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container">   
+    <!-- class="navbar-brand text-danger font-weight-bold" -->       
+      <a href="/"><img src="/logo.jpeg" style="height: 70px"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+        
 
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <!-- <div class="navbar-header"> -->
-          
-          <a class="navbar-brand text-danger font-weight-bold" href="/">BrainJoules</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        <!-- </div> -->
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-
-            <%= link_to "Home", root_path, class: "nav-link" %></li>
-            <% if signed_in? %>
-
+            <li class="nav-item active"><%= link_to "Home", root_path, class: "nav-link" %></li>
           </ul>
+          <ul class="navbar-nav ml-auto">
+              <% if signed_in? %>
+                  <li class="nav-item dropleft">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                       <a class="dropdown-item" href="#"><%= link_to "Log Out", sign_out_path, method: :delete, class: "dropdown-item" %></a>
+                    </div>
+                  </li>
+             
+              <% else %>
+                <a class="nav-link btn-danger" href="/sign_in">Sign in</a>
+                <a class="nav-link btn-danger" href="/sign_up">Sign up</a>
+             </ul>
+              <% end %>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %>
-              </a>
-
-              
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to "Log Out", sign_out_path, method: :delete, class: "dropdown-item" %>
-              </div>
-              
-
-                
-            </li>
-          </ul>
-          <% else %>
-            <a class="nav-link btn-danger" href="/sign_in">Sign in</a>
-            <a class="nav-link btn-danger" href="/sign_up">Sign up</a>
-           
-          <% end %>
-
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-
-
+        </div>
+      </div>
+  </nav>
 
   <% flash.each do |key, value| %>
-        <%= value %>
-      <% end %>
+    <%= value %>
+  <% end %>
 
-      
-
+  <div class="container">
   <%= yield %>
 </body>
+  </div>
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.js"

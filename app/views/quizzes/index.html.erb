@@ -1,64 +1,28 @@
-<h1>Quiz Index</h1>
-
+<h1>Quiz List</h1>
 <hr>
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
+<a href="/"><img src="/backicon.png" style="height: 30px"></a>
 
-    th, td {
-        padding: 5px;
-        text-align: left;
-    }
-</style>
-
-<table style="width: 100%">
-<tr>
-    <th>Quiz Title</th>
-    <% @quiz.each do |quiz| %>
-    <td><%= quiz.title %></td>
-    <% end %>
-</tr>
-
-<tr>
-    <th rowspan="1">Question</th>
-    <%# @question.each do |question| %>
-    <td><%# question.description %></td>
-    <%# end %>
-</tr>
-
-<tr>
-    <th rowspan="4">Answer</th>
-    <%# @answer.each do |answer| %>
-    <td><%# answer.description %></td>
-<%# end %>
-</tr>
-
-</table>
-<hr>
-
-<hr>
 <table class="table table-hover table-dark">
   <thead>
     <tr>
       <th scope="col">No.</th>
       <th scope="col">Quiz Title</th>
-      <th scope="col">Status</th>
+      <th scope="col"></th>
       
     </tr>
   </thead>
   <tbody>
-<% count = 0 %>
-<% @quiz.each do |quiz| %>
+    <% count = 0 %>
+    <% @quiz.each do |quiz| %>
     <tr>
       <th scope="row"><%= count += 1%></th>
       <td><%= quiz.title %></td>
-      <%= %>
-      <td><%= link_to "view more", "/quizzes/#{quiz.id}" %></td>
+      <td><%= link_to "view more", "/quizzes/#{quiz.id}" %>
+      | <%= link_to "edit", "/quizzes/#{quiz.id}/edit" %></td>
     </tr>
-
-<% end %>
+    <% end %>
   </tbody>
 </table>
+
+
 

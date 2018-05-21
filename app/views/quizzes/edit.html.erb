@@ -1,0 +1,14 @@
+<h1>Edit Quiz</h1>
+<hr>
+<div class="editcontainer">
+
+<a href="/"><img src="/backicon.png" style="height: 30px"></a>
+<%= form_for(:quiz, url: "/quizzes/#{@quiz.id}", html: {method: "put"}) do |form| %>
+<p>Title: 
+<%= @quiz.title %></p>
+
+<p>Change title to: <%= form.text_field :title%></p>
+<%= form.submit "Update & Save" %>
+<% end %>
+
+</div>
