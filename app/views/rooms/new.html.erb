@@ -1,48 +1,46 @@
-<h1>Code</h1>
-<%= @room.room_id %>
-<br>
-<br>
-Joined Student: <span id="user_count"><%= @user_student.count %></span>
+<div id ="whole-pg">
 
-
-<p>Quiz</p>
-
-
-		<% if current_user.teacher? %>
-
-			<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
-		     <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
-		     <datalist id="quiz"> 
-		    </datalist>
-		    <button id="display_quiz">Display</button>
-		    <%end%>
-	    	
-				<div id="btn-container"></div>
-			
-			
-
-		<% end %>
-			
-			
-		<br>
-		<span id="title"></span><br>
-		<span id="q_number"></span>
-		<span id="question"></span><br>
-		<span id="option1"></span><br>
-		<span id="option2"></span><br>
-		<span id="option3"></span><br>
-		<span id="option4"></span>
+	<div id = "top">	
 		
-		
-		
+		<div id = "room-id" class="child"><%= @room.room_id %></div>
+		<span id="user_count" class="child"><%= @user_student.count %></span>
+	</div>
 
-		
 
-     
+	<% if current_user.teacher? %>
+		<div id = "remove">
+			<h4 id="quiz-select">Please select a quiz</h4>
+				<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+				 <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
+				 <datalist id="quiz"></datalist>
+				 <button id="display_quiz">Display</button>
+		</div>
+				<%end%>
+		    	
+		<div id="btn-container"></div>
 
-	
-
+		<div id="student-count">
+			<h4 id="box1" class = "box">Answered</h4>
+			<h4 id="box2" class ="box">Answered Correct</h4>
+			<div id="student-answered" class="box">0</div>
+			<div id="student-answer-correct" class="box">0</div>
+		</div>
+					<div id="done"></div>
+	<% end %>
+				
+				
+			<br>
+			<span id="title"></span><br>
+			<span id="q_number"></span>
+			<span id="question"></span><br>
+			<span id="option1" class="option"></span><br>
+			<span id="option2" class="option"></span><br>
+			<span id="option3" class="option"></span><br>
+			<span id="option4" class="option"></span>
+</div>				
 <script type="text/javascript">
+let correct_answer =0
+let answered_question = 0
 
 $('#query').on("keyup", function(){
     autocomplete()
@@ -88,6 +86,7 @@ $('#query').on("keyup", function(){
   }
 
 $('#display_quiz').on("click", function(){
+	console.log("display clicked")
     selecttitle()
   });
   function selecttitle(){
@@ -106,18 +105,57 @@ $('#display_quiz').on("click", function(){
     });
   }
 
+
+  let clicked = false; 
+  $('.option').on("click", function(e){
+	// console.log("option1 clicked")
+	if (clicked === false){
+    checkcorrect(e)
+
+	}
+	clicked = true;
+  });
+  function checkcorrect(e){
+  	answered_question++
+  	$.ajax({
+      url:'/checkcorrect',
+      type:'GET',
+      data: { "q_number": $("#q_number").html(),
+      		"answer_number": e.target.id[e.target.id.length - 1],
+      			"authenticity_token": "<%= form_authenticity_token %>"
+  			},
+      dataType:'json',
+      success:function(data){
+      	if (data.result == true){
+      		correct_answer++
+      		e.target.style.color ="green";
+
+      	}
+      	else if (data.result == false){
+      		e.target.style.color ="red";
+      	}
+
+      },
+      error: function(request, status, error){
+        console.log(request.responseText);
+                // console.log(request.responseText);
+        console.log("sorry. Something went wrong")
+      }
+    });
+  	
+  }
  
- $('#next').on("click", function(){
+ $('#btn-container').on("click", function(){
  	console.log("next button clicked")
+ 	clicked = false
     nextquestion()
   });
   function nextquestion(){
-  	
   	$.ajax({
       url:'/nextquestion',
       type:'POST',
       data: { "title": $("#title").html(),
-      			"authenticity_token": "<%= form_authenticity_token %>",q_number: "0"
+      			"authenticity_token": "<%= form_authenticity_token %>",q_number: $("#q_number").html()
   			},
       dataType:'json',
       error: function(request, status, error){
@@ -128,6 +166,22 @@ $('#display_quiz').on("click", function(){
     });
   }
 
+  $('#done').on("click", function(){
+  	console.log("done clicked")
+    done()
+  });
+  function done(){
+  	$.ajax({
+      url:'/done',
+      type:'GET',
+      
+      error: function(request, status, error){
+        console.log(request.responseText);
+                // console.log(request.responseText);
+        console.log("sorry. Something went wrong")
+      }
+    });
+  }
 
 
   

@@ -110,3 +110,102 @@ h1 {
 .nav-item {
 	font-family: 'Kalam';
 }
+
+#room-id{
+	font-family: "Kalam";
+	font-size: 200px;
+	color: yellow;
+}
+
+#user_count{
+	font-size: 100px;
+	font-family: 'Kalam';
+	color: red;
+}
+
+#top{
+	display: inline-block;
+	position: relative;
+	padding-bottom: 0px;
+	height: 10px;
+	width:90%;
+	align-items: flex-start;
+
+
+}
+
+#whole-pg{
+	padding-top: 0;
+}
+
+
+#user_count{
+	top:70px;
+	right:0;
+	position: absolute;
+}
+
+#room-id{
+	/*top:0;
+	font-family: 'Montserrat', sans-serif;*/
+	
+}
+
+#quiz-select{
+	font-family: 'Bungee';
+	margin-top:80px;
+}
+
+#display_quiz{
+	/*font-family: 'Montserrat', sans-serif;
+	border-radius: 20%;
+	background-color: white;
+	border: 2px solid black;*/
+	
+}
+
+/*input box for form beside display button*/
+#query{
+	/*border-radius: 20%;
+	background-color: white;
+	border: 2px solid balck;
+	height: 40px;*/
+}
+
+#student-count{
+	 width: 50%;
+     height: 100px;
+     display: flex;
+     position: relative;
+     margin-left: 70%;
+
+}
+
+.box{
+	position: absolute;
+	font-family: 'Bungee';
+	color:grey;
+}
+
+#box1{
+	top:0;
+	left:0;
+}
+
+#box2{
+	top:0;
+	right:0;
+}
+
+#student-answered{
+	left:0;
+	bottom:0;
+}
+
+#student-answer-correct{
+	bottom:0;
+	right:0;
+}
+
+
+

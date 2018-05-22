@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   get "/joinroom" => "rooms#index"
   post "/selectquiz" => "rooms#select_quiz"
   post "/nextquestion" => "rooms#next_question"
+  get "/done" => "rooms#done"
+  get "/role" => "rooms#role"
 
 
 ##quiz part
@@ -67,7 +69,7 @@ Rails.application.routes.draw do
   get "/zoo" => "pets#zoo"
   get "/petshop" => "pets#index"
 
-
+  get "/checkcorrect" => "rooms#check_correct"
 
   post "/search_quiz" => "quizzes#search"
 
