@@ -1,6 +1,6 @@
 <h1>Quiz List</h1>
 <hr>
-<a href="/"><img src="/backicon.png" style="height: 30px"></a>
+<a href="/"><img src="/back.png" style="height: 30px"></a>
 
 <table class="table table-hover table-dark">
   <thead>
@@ -18,7 +18,7 @@
       <th scope="row"><%= count += 1%></th>
       <td><%= quiz.title %></td>
       <td><%= link_to "view more", "/quizzes/#{quiz.id}" %>
-      | <%= link_to "edit", "/quizzes/#{quiz.id}/edit" %></td>
+      <!-- | <%# link_to "edit", "/quizzes/#{quiz.id}/edit" %></td> -->
     </tr>
     <% end %>
   </tbody>

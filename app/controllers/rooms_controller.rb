@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
 	require 'securerandom'
 
 	def create
+		
 		@room = Room.create(room_id: SecureRandom.hex(2))
 		@room.users << current_user
 		cookies[:room_id] = @room.room_id

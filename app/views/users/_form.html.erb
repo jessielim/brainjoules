@@ -1,16 +1,18 @@
-<div class="text-field">
+<div class="form-row">
+<div class="form-group col-md-4">
   <%= form.label :email %>
-  <%= form.email_field :email%>
+  <%= form.email_field :email, type: "email", class: "form-control", placeholder: "Email"%>
 </div>
-
-<div class="password-field">
+</div>
+<div class="form-row">
+<div class="form-group col-md-4">
   <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, class: "form-control", placeholder: "8-12 characters" %>
 </div>
-
-
-<div class="role-field">
+</div>
+<div class="form-row">
+<div class="form-group col-md-4">
   <%= form.label :role %>
-  <%= form.text_field :role %>
+  <%= form.text_field :role, class: "form-control", placeholder: "teacher"  %>
 </div>
-
+</div>

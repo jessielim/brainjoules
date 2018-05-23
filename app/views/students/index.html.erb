@@ -1,4 +1,4 @@
-<h3>Name of Student </h3>
+<h4>Search by name of student</h4>
 
 
     <%= form_tag '/search_student', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
@@ -7,28 +7,20 @@
     </datalist>
       <%= submit_tag "Search",:id => 'searchBtn',:class => 'btn btn-outline-primary my-2 my-sm-0'%>
       <% end %>
+<hr>
+<a href="/"><img src="/back.png" style="height: 30px"></a>
 
 <h1>Students</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Parent's Email</th>
-      <th>Parent's Contact</th>
-      <th>Score</th>
-      <th>Token</th>
-      
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
-
-        <% @student.order('id asc').each do |x| %>
-        <tr id = "student_<%=x.id%>">
+<table class="table table-hover table-dark">
+<th>Name of Student</th>
+<th>Parent Email</th>
+<th>Parent Contact</th>
+<th>Score</th>
+<th>Token</th>
+   <% @student.order('id asc').each do |x| %>
+ <tr id = "student_<%=x.id%>">
             <td><%= x.name %></td>
             <td><%= x.parents_email %></td>
             <td><%= x.parents_contact %></td>
@@ -39,16 +31,9 @@
               <td><%= link_to 'Destroy', {action: :destroy, id: x.id}, method: :delete, remote: true, data:{ confirm: 'Are you sure?'}  %></td>
            <%end%>
         <%end%>
-
-
         </tr>
-    </tr>
-
-           
-           
-         
-  </tbody>
 </table>
+
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">

@@ -56,11 +56,14 @@
       </div>
   </nav>
 
+<!-- <div id="homeback">
+    <img id= "homebackimg" src="/homeback.jpg">
+    </div> -->
+
+  <div class="container">
   <% flash.each do |key, value| %>
     <%= value %>
   <% end %>
-
-  <div class="container">
   <%= yield %>
 </body>
   </div>

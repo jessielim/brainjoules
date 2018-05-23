@@ -7,23 +7,23 @@
 	<%if current_user.admin?%>
 		<div class = "admin_homepage">
 		 	<div class = "find_a_teacher">
-				<a href ="/find_a_teacher"><img src="findteachericon.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;" >Find A Teacher</p></a>
+				<a href ="/find_a_teacher"><img src="/serach.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;" >Find A Teacher</p></a>
 			</div>
 
 		 	<div class = "find_a_student">
-				<a href ="/find_a_student"><img src="findstudenticon.jpg" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;" >Find A Student</p></a>
+				<a href ="/find_a_student"><img src="/serach.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;" >Find A Student</p></a>
 			</div>
 
 		 	<div class = "add_teacher">
-		 		<a href ="/add_teacher"><img src="addstudent.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Add A Teacher</p></a>
+		 		<a href ="/add_teacher"><img src="/personadd.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Add A Teacher</p></a>
 		 	</div>
 
 		 	<div class = "add_student">
-		 		<a href ="/add_student"><img src="addstudent.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Add A Student</p></a>
+		 		<a href ="/add_student"><img src="/1findstudenttt.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Add A Student</p></a>
 		 	</div>
 
 		 	<div class = "report">
-		 		<a href ="#"><img src="report.jpeg" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Generate Report</p></a>
+		 		<a href ="#"><img src="/reportt.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Generate Report</p></a>
 		 	</div>
 		 </div>
 
@@ -31,47 +31,64 @@
 	 	
 	 	<div class = "teacher_homepage">
 		 	<div class = "show_quizzes">
-			 		<a href ="/quizzes"><img src="quiz.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Show Quizzes</p></a>
+			 		<a href ="/quizzes"><img src="/quizicons.png" style="height: 150px; margin: 30px;" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Show Quizzes</p></a>
 			</div>
 
 			<div class = "create_quiz">
-			 		<a href ="/quizzes/new"><img src="createquiz.png" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Create Quiz</p></a>
+			 		<a href ="/quizzes/new"><img src="/1editicon.png" style="height: 150px; margin: 30px;" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white; margin-bottom: 0px;">Create Quiz</p></a>
 			</div>
 
 
 
 			<div class = "find_a_student">
-			 		<a href ="/find_a_student"><img src="findstudenticon.jpg" style="height: 150px" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Find a Student</p></a>
+			 		<a href ="/find_a_student"><img src="/1findstudenttt.png" style="height: 150px; margin: 30px;" class= "icon"><p class = "icon_word" style="font-family: Merienda;color: white;">Find a Student</p></a>
 			</div>
+
+		 	<div class = "create_a_room">
+		 	<%= form_tag("/rooms", method: "post") do %>
+		 	<!-- <a href ="#"> --><img src="/ente.png" style="height: 150px; margin: 30px;" class= "icon">
+		 		<p><%= submit_tag "Create Room", class: "icon_words"%></p>
+		 		<!-- <input type="submit" value="Create Room" class= "btn_btn" style="background-color: black; color:white;font-family: Merienda;"> -->
+		 		<!-- <p style="font-family: Merienda;color: white;">Create Room</p> -->
+		 	<% end %>
+		 	<!-- </a> -->
+		 	</div>
 		</div>
 
-	 	<div class = "create_a_room">
-	 	<!-- <img src="add_student.png" alt="Add Student" height="42" width="42"> -->
-	 	<%= form_tag("/rooms", method: "post") do %>
-	 		<input type="submit" value="Create" name="">
-	 	<% end %>
-	 	</div>
-
 	 <%elsif current_user.student?%>
-	 <%= form_tag("/joinroom", method: "post") do %>
-	   <%= label_tag(:q, "Join room") %>
-	   <%= text_field_tag(:q) %>
-	   <%= submit_tag("Join") %>
-	 <% end %>
+	 	<div class="student_homepage">
+	 			
+	 			
+				 <%= form_tag("/joinroom", method: "post") do %>
+				 
+				   <%= label_tag :q, "Join room : ", class: 'joinlabel' %>
+				   <%= text_field_tag(:q)%>
+				   
+					<br>
+				 <div id="btnlg">
+				   <%= submit_tag "Join", class: "btn btn-primary btn-lg "%>
+	 				
+	 				<%=link_to 'Zoo ', "/student/zoo", class: "btn btn-primary btn-lg" %>
+			 	</div>
+				 <% end %>
+			 
+	 		
+	  	</div>
 	 	
 	 	
-	 	<br>
-	 	<%=link_to 'Zoo', "/zoo"%>
+	 	
 	 <%end%>
 <%else%>
 		<!-- http://www.pptbackgrounds.org/uploads/kindergarten-powerpoint-templates.jpg -->
-		
+		<div id="herobg">
 		<div class="hero-text">
-				<h1><img src="hometext.png"></h1>
+				★·.·´¯`·.·★ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙʀᴀɪɴᴊᴏᴜʟᴇs ★·.·´¯`·.·★<!-- <img src="hometext.png"> -->
 		</div>
-		
-	
+
+		</div>
+
 <%end%>
+		
 
 
 <!-- <script type="text/javascript">

@@ -1,43 +1,79 @@
 <div id ="whole-pg">
 
 	<div id = "top">	
-		
-		<div id = "room-id" class="child"><%= @room.room_id %></div>
-		<span id="user_count" class="child"><%= @user_student.count %></span>
+		<!-- teacher & student -->
+    <div id = "room-id" class="child"><p>Room code:</p><%= @room.room_id %>
+    </div>
+    <div id="user_count" class="child"><p>No. of students joined: </p><%= @user_student.count %></div>
 	</div>
 
+<!-- teacher: search quiz -->
+      <div id="q_a">
+  <% if current_user.teacher? %>
+    <div id = "remove">
+      <h4 id="quiz-select">Please select a quiz</h4>
+        <%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
+         <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
+         <datalist id="quiz"></datalist>
+         <button id="display_quiz">Display</button>
+    </div>
+        <%end%>
+<!-- teacher: next  -->
 
-	<% if current_user.teacher? %>
-		<div id = "remove">
-			<h4 id="quiz-select">Please select a quiz</h4>
-				<%= form_tag '/search_quiz', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
-				 <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "quiz" %>
-				 <datalist id="quiz"></datalist>
-				 <button id="display_quiz">Display</button>
-		</div>
-				<%end%>
-		    	
-		<div id="btn-container"></div>
+<!-- teacher: total answers -->
+    <div id="student-count">
+    <div id="studentcount1">
+      <h4 id="box1" class = "box">Answered</h4>
+      <div id="student-answered" class="box">0</div>
+    </div>
+    <div id="studentcount2">
+      <h4 id="box2" class ="box">Answered Correct</h4>
+      <div id="student-answer-correct" class="box">0</div>
+    </div>
+    </div>
+    <!-- teacher: finish quiz -->
+    <div id="controlss">
+    <div id="btn-container"></div>
+          <div id="done"></div>
+          </div>
+  <% end %>
 
-		<div id="student-count">
-			<h4 id="box1" class = "box">Answered</h4>
-			<h4 id="box2" class ="box">Answered Correct</h4>
-			<div id="student-answered" class="box">0</div>
-			<div id="student-answer-correct" class="box">0</div>
-		</div>
-					<div id="done"></div>
-	<% end %>
-				
-				
-			<br>
-			<span id="title"></span><br>
-			<span id="q_number"></span>
-			<span id="question"></span><br>
-			<span id="option1" class="option"></span><br>
-			<span id="option2" class="option"></span><br>
-			<span id="option3" class="option"></span><br>
-			<span id="option4" class="option"></span>
-</div>				
+        <!-- teacher & student: question and answers -->
+      
+      <span id="quiztitle"></span>
+        <span id="title"></span><br>
+        <br>
+      <span id="questionnumber"></span>
+        <span id="q_number"></span><br>
+        <br>
+      <span id="questionss"></span>
+        <span id="question"></span><br>
+        <br>
+      <span id="option11"></span>
+        <span id="option1" class="option"></span><br>
+        <br>
+      <span id="option22"></span>
+        <span id="option2" class="option"></span><br>
+        <br>
+      <span id="option33"></span>
+        <span id="option3" class="option"></span><br>
+        <br>
+      <span id="option44"></span>
+        <span id="option4" class="option"></span>
+        <br>
+      </div>
+</div> 
+
+<!-- student,finished quiz -->
+<div id="finishedanswers">
+  <span id="studentcorrectanswers"></span>
+  <span id="studenttotalanswers"></span>
+
+  <span id="correct"></span>
+  <span id="answered"></span>
+
+</div>
+
 <script type="text/javascript">
 let correct_answer =0
 let answered_question = 0

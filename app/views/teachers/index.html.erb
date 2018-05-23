@@ -1,34 +1,26 @@
-<h3>Name of Teacher </h3>
-
-
+<h4>Search by name of teacher</h4>
     <%= form_tag '/search_teacher', method: 'post', :id => 'form', :class => 'form-inline my-2 my-lg-0' do %>
      <%= text_field_tag :query, "", :class =>'form-control mr-sm-2', list: "teacher" %>
      <datalist id="teacher"> 
     </datalist>
       <%= submit_tag "Search",:id => 'searchBtn',:class => 'btn btn-outline-primary my-2 my-sm-0'%>
       <% end %>
+<hr>
+<a href="/"><img src="/back.png" style="height: 30px"></a>
+
 
 <h1>Teachers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>ID</th>
-      <th>Phone Number</th>
-      
-      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>
+<table class="table table-hover table-dark">
+<th>ID</th>
+<th>Name</th>
+<th>Phone Number</th>
 
-        <% @teacher.order('id asc').each do |x| %>
+ <% @teacher.order('id asc').each do |x| %>
         <tr id = "teacher_<%=x.id%>">
-            <td><%= x.name %></td>
             <td><%= x.id %></td>
+            <td><%= x.name %></td>
             <td><%= x.phone_number %></td>
           <%if current_user.admin?%>
               <td><%= link_to 'Edit', "/teacher/#{x.id}/edit"%></td>
@@ -40,12 +32,6 @@
 
 
         </tr>
-    </tr>
-
-           
-           
-         
-  </tbody>
 </table>
 
 <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>

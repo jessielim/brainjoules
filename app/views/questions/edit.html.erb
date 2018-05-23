@@ -5,7 +5,7 @@
 <%= form_for(:question, html: {method: "put"}) do |form| %>
 
   <% @question.each do |question| %>
- s
+ 
       <p>Question <%= count += 1%>: <%= question.description %></p>
 
   <% end %>

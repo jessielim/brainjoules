@@ -1,37 +1,42 @@
-<h2>Create New Teacher</h2>
+<a href="/"><img src="/back.png" style="height: 30px"></a>
+<h2 id="createteacher">Create New Teacher</h2>
+<hr>
+<div class="container">
 
-  <%= form_for(@user, url: "/teachers_index", html: {method: "post"}) do |form| %>
+<%= form_for(@user, url: "/teachers_index", html: {method: "post"}) do |form| %>
 
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      <%end%>
-      </ul>
+  <%end%>
+    </ul>
     </div>
 
-    <%= render partial: '/users/form', object: form %>
+  <%= render partial: '/users/form', object: form %>
 
-    <%= fields_for(@user.teachers.new) do |x| %>
-
-    <div class="text-field">
+  <%= fields_for(@user.teachers.new) do |x| %>
+  <div class="form-row">
+    <div class="form-group col-md-4">
     <%= x.label :name %>
-    <%= x.text_field :name%>
+    <%= x.text_field :name, class: "form-control", placeholder: "Name"%>
     </div>
-
-    <div class="text-field">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
     <%= x.label :phone_number %>
-    <%= x.text_field :phone_number%>
+    <%= x.text_field :phone_number, class: "form-control", placeholder: "Phone Number"%>
     </div>
+  </div>
 
-
-     <% end %>
-    <div class="action">
-      <%= form.submit "Add!" %>
-    </div>
   <% end %>
+    <div class="action">
+    <%= form.submit "Add", class:"btn btn-primary" %>
+    </div>
+<% end %>
+
 </div>

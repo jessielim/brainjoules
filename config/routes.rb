@@ -66,8 +66,7 @@ Rails.application.routes.draw do
   post "/search_quiz" => "quizzes#search"
 
   ##zoo
-  get "/zoo" => "pets#zoo"
-  get "/petshop" => "pets#index"
+  get "/student/zoo" => "pets#index"
 
   get "/checkcorrect" => "rooms#check_correct"
 
