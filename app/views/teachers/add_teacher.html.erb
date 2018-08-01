@@ -17,7 +17,7 @@
     </ul>
     </div>
 
-  <%= render partial: '/users/form', object: form %>
+  <%= render partial: '/users/form', object: form%>
 
   <%= fields_for(@user.teachers.new) do |x| %>
   <div class="form-row">
@@ -33,10 +33,11 @@
     </div>
   </div>
 
-  <% end %>
     <div class="action">
-    <%= form.submit "Add", class:"btn btn-primary" %>
+    <%= form.submit "Add", class:"btn btn-primary" , id: "submitBtn" %>
     </div>
+</div>
+  <% end %>
 <% end %>
 
-</div>
+

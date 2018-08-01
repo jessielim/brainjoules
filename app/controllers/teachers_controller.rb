@@ -27,7 +27,7 @@ class TeachersController < Clearance::UsersController
 	def teacher_created
 	 	@user = User.new(user_params)
 	 	@user.teachers.new(teacher_params)
-
+	 	# byebug
 		    respond_to do |format|
 		    
 		      if @user.save
