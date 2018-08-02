@@ -1,8 +1,8 @@
 <h2>Create New Student</h2>
 <hr>
 <a href="/"><img src="/back.png" style="height: 30px"></a>
-<div class="container">
   <%= form_for(@user, url: "/students_index", html: {method: "post"}) do |form| %>
+<div class="container">
 
   <% if @user.errors.any? %>
     <div id="error_explanation">

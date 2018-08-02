@@ -1,9 +1,9 @@
 <a href="/"><img src="/back.png" style="height: 30px"></a>
 <h2 id="createteacher">Create New Teacher</h2>
 <hr>
+<%= form_for(@user, url: "/teachers_index", html: {method: "post"}) do |form| %>
 <div class="container">
 
-<%= form_for(@user, url: "/teachers_index", html: {method: "post"}) do |form| %>
 
   <% if @user.errors.any? %>
     <div id="error_explanation">
